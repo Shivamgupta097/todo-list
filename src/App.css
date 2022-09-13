@@ -80,12 +80,17 @@ ul .list {
   border-radius: 10px;
   box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.454);
 }
+.list span{
+  margin-left:4px;
+}
+
+
 
 .button__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   overflow: hidden;
 
 }

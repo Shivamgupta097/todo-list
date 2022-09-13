@@ -45,7 +45,7 @@ function App() {
   return (
     <div className="App">
       <div className='container'>
-        <h1>To-do list App</h1>
+        <h1>To-do list App 📝</h1>
         {/* input form start */}
         <form onSubmit={handleSubmit}>
           <input type="text" value={toDo} onChange={(e) => setToDo(e.target.value)} />
