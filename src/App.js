@@ -1,9 +1,7 @@
-
 import { useEffect, useState } from 'react';
 import './App.css';
 import { v4 as uuid } from 'uuid';
 import TaskList from './components/TaskList';
-
 
 
 const getLocalTasks = () => {
@@ -38,7 +36,7 @@ function App() {
 
 
       //setEditId
-      setEditId(editId);
+      setEditId(0);
       setIsEdit(false);
       setToDo("");
       return;
