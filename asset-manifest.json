@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/shivam_todo/static/css/main.993fca5c.css",
+    "main.js": "/shivam_todo/static/js/main.4776fd83.js",
+    "index.html": "/shivam_todo/index.html",
+    "main.993fca5c.css.map": "/shivam_todo/static/css/main.993fca5c.css.map",
+    "main.4776fd83.js.map": "/shivam_todo/static/js/main.4776fd83.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.993fca5c.css",
+    "static/js/main.4776fd83.js"
+  ]
+}
