@@ -1,14 +1,30 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { v4 as uuid } from 'uuid';
 import TaskList from './components/TaskList';
 
+
+
+const getLocalTasks = () => {
+  let list = localStorage.getItem("list");
+  if (list) {
+    return JSON.parse(localStorage.getItem("list"));
+  } else {
+    return [];
+  }
+}
+
 function App() {
   const [toDo, setToDo] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getLocalTasks());
   const [editId, setEditId] = useState(0);
   const [isEdit, setIsEdit] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(tasks))
+  }, [tasks])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,11 +35,12 @@ function App() {
       console.log(tasks, "1 task");
 
       setTasks(updatedTasks);
-      console.log(tasks, "2 task");
+
 
       //setEditId
       setEditId(editId);
       setIsEdit(false);
+      setToDo("");
       return;
     }
 
