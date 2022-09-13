@@ -1,31 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState } from 'react';
 
+import { useState } from 'react';
+import './App.css';
 import { v4 as uuid } from 'uuid';
 import TaskList from './components/TaskList';
 
 function App() {
   const [toDo, setToDo] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [editId, setEditId] = useState(0)
+  const [editId, setEditId] = useState(0);
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-//  To edit the click list
+    //  To edit the click list
     if (editId) {
       const updatedTasks = tasks.map((cur) => cur.id === editId ? { id: cur.id, toDo } : cur);
-      console.log(updatedTasks, "here");
+      console.log(updatedTasks, "updated task");
+      console.log(tasks, "1 task");
+
       setTasks(updatedTasks);
-      console.log(tasks, "hwre")
+      console.log(tasks, "2 task");
+
+      //setEditId
+      setEditId(editId);
+      setIsEdit(false);
+      return;
     }
 
     if (toDo !== "") {
+      setTasks([{ id: uuid(), toDo }, ...tasks]);
+      setToDo("");
 
-      setTasks([{ id: uuid(), toDo }, ...tasks])
     }
-
-    setToDo("");
   }
 
   //To delete the click link
@@ -35,13 +41,14 @@ function App() {
     setTasks(updatedList);
   }
 
-//to edit the click list
+  //to edit the click list
   const handleEdit = (id) => {
     const editObj = tasks.find(cur => cur.id === id);
     setToDo(editObj.toDo);
     setEditId(id);
-
+    setIsEdit(true);
   }
+
   return (
     <div className="App">
       <div className='container'>
@@ -49,10 +56,10 @@ function App() {
         {/* input form start */}
         <form onSubmit={handleSubmit}>
           <input type="text" value={toDo} onChange={(e) => setToDo(e.target.value)} />
-          <button type="submit">{editId ? "Edit" : "Done"}</button>
+          <button type="submit">{isEdit ? "Edit" : "Done"}</button>
         </form>
         {/* TaskList start */}
-        <TaskList tasks={tasks} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        <TaskList tasks={tasks} handleEdit={handleEdit} handleDelete={handleDelete} />
       </div>
 
     </div>
